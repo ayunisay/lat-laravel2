@@ -19,78 +19,51 @@
     @endif
 </head>
 
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 min-h-screen flex-col">
-        <div class="w-full items-center lg:justify-center">
-            <nav class="w-full justify-items-start pl-10">
-                <ul class="flex gap-5 text-md font-medium">
-                    <li>
-                        <a href="{{route(name: 'home')}}" class="hover:underline">
-                            Home
-                        </a>
-                    </li>
-                        |
-                    <li>
-                        <a href="{{route('barang')}}" class="hover:underline">
-                            Peminjaman Barang
-                        </a>
-                    </li>
-                        |
-                    <li>
-                        <a href="{{route('aula')}}" class="hover:underline">
-                            Peminjaman Aula
-                        </a>
-                    </li>
-                    |
-                    <li>
-                        <a href="{{route('tutorial')}}" class="hover:underline">
-                            Tutorial
-                        </a>
+    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 min-h-screen flex-col">
+            <div class="flex justify-between pl-10">
+                <ul class="flex">
+                    <li class="mr-6">
+                        <a class="text-blue-500 hover:text-blue-800" href="{{ route('barang') }}"><- Kembali</a>
                     </li>
                 </ul>
-            </nav>
-
-            <div class="grid items-center justify-center pl-20">
-                <div class="pt-15 text-xl font-bold">
-                        <h1>List Peminjaman Barang</h1>
+            </div>
+        <div class="w-full items-center justify-items-center ">
+            <div class="flex items pt-15 text-xl font-bold text-center">
+                <h1>Form Edit Peminjaman Barang</h1>
+            </div>
+            <form action="/update-buku/{{ $barang->id }}" method="post" class="w-full max-w-lg pt-10">
+                @csrf
+                @method('PUT')
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full px-3">
+                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama Barang</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->nama_barang }}">
                     </div>
-                    <div class="pt-10 text-base font-bold">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-md">
-                            <a href="{{route('tambah-barang-form')}}">Tambah Peminjaman Barang</a>
+                </div><div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full px-3">
+                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama Peminjam</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->nama_peminjam }}">
+                    </div>
+                </div><div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full px-3">
+                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Peminjaman</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->tanggal_peminjaman }}">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3">
+                    <div class="w-full px-3">
+                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Pengembalian</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="tanggal_pengembalian" value="{{ $barang->tanggal_pengembalian }}">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6 pt-10">
+                    <div class="w-full px-3">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-57.5 rounded-lg" type="submit">
+                            Update
                         </button>
                     </div>
-                    <div class="rounded-md overflow-hidden pt-3">
-                        <table class="table-auto border-collapse border-2 border-slate-400 text-base">
-                            <thead>
-                                <tr>
-                                    <th class="border-2 border-slate-400 p-4">Nama Barang</th>
-                                    <th class="border-2 border-slate-400 p-4">Peminjam</th>
-                                    <th class="border-2 border-slate-400 p-4">Tanggal Ambil</th>
-                                    <th class="border-2 border-slate-400 p-4">Tanggal Kembali</th>
-                                    <th class="border-2 border-slate-400 p-4">Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if ($barang == null)
-                                    <td>Tidak ada data</td>
-                                @else
-                                    @foreach ($barang as $barangs)
-                                    <tr>
-                                        <td class="border-2 border-slate-400 p-4">{{ $barangs -> nama_barang }}</td>
-                                        <td class="border-2 border-slate-400 p-4">{{ $barangs ->  nama_peminjam}}</td>
-                                        <td class="border-2 border-slate-400 p-4">{{ $barangs -> tanggal_peminjaman }}</td>
-                                        <td class="border-2 border-slate-400 p-4">{{ $barangs -> tanggal_pengembalian }}</td>
-                                        <td class="border-2 border-slate-400 p-4">
-                                            <a href="/edit_barang/{{ $barangs->id }}">
-                                                <button>Edit</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach 
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
-            </div>
+                </div>
+            </form>
         </div>
-</body>                
+    </body>
 </html>

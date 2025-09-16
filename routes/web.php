@@ -29,3 +29,5 @@ Route::get('/tambah-aula', function () {
 
 // POST route to handle the form submission and store data
 Route::post('/tambah-aula', [AulaController::class, 'create'])->name('tambah-aula-submit');
+
+Route::get('/edit_barang/{id_barang}', [BarangController::class, 'edit']);

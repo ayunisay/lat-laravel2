@@ -32,4 +32,26 @@ class BarangController extends Controller
 
         return redirect()->route('barang')->with('success', 'Peminjaman Barang berhasil ditambahkan!');
     }
-}
+
+    public function edit($id)
+    {
+        $barangs = Barang::find($id);
+        return view('edit_barang', ['barang' => $barangs]);
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'nama_barang' => 'required|string|sometimes|max:255',
+            'nama_peminjam' => 'required|string|sometimes|max:255',
+            'tanggal_peminjaman' => 'required|sometimes|date',
+            'tanggal_pengembalian' => 'required|sometimes|date|after_or_equal:tanggal_peminjam',
+        ]);
+
+        Barang::where('id', $id)->update([
+            'nama_barang' => $request->nama_barang,
+            'nama_peminjam' => $request->nama_peminjam,
+            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'tanggal_pengembalian' => $request->tanggal_pengembalian,
+        ]);
+    }
+}   
