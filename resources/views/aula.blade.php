@@ -75,6 +75,16 @@
                                     <td class="border-2 border-slate-400 p-4">{{ $aulas ->  nama_peminjam}}</td>
                                     <td class="border-2 border-slate-400 p-4">{{ $aulas -> tanggal_mulai }}</td>
                                     <td class="border-2 border-slate-400 p-4">{{ $aulas -> tanggal_selesai }}</td>
+                                    <td class="border-2 border-slate-400 p-4">
+                                        <a href="{{ route('edit-aula', ['id'=>$aulas->id]) }}">
+                                            <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-5 rounded-md">Edit</button>
+                                        </a>
+                                        <form action="{{ route('hapus-aula', ['id'=>$aulas->id]) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-md mt-3" type="submit" onclick="return confirm('Yakin?')">Hapus</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

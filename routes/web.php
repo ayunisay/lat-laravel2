@@ -3,31 +3,31 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TutorialController;
 
-Route::get('/', function () {
-    return view('home');
-})-> name('home');
+//view
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/barang', [BarangController::class, 'barang'])->name('barang');
+Route::get('/aula', [AulaController::class, 'aula'])->name('aula');
+Route::get('/video-tutorial', [TutorialController::class,'tutor'])->name('tutorial');
 
-Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+//create 
+Route::get('/tambah-barang', [BarangController::class,'tambahBarang'])->name('tambah-barang-form');
+Route::post('/tambah-barang-submit', [BarangController::class, 'tambahBarangSubmit'])->name('tambah-barang-submit');
 
-Route::get('/aula', [AulaController::class, 'index'])->name('aula');
+Route::get('/tambah-aula', [AulaController::class,'tambahAula'])->name('tambah-aula-form');
+Route::post('/tambah-aula-submit', [AulaController::class, 'tambahAulaSubmit'])->name('tambah-aula-submit');
 
-Route::get('/video-tutorial', function () {
-    return view('tutorial');
-})-> name('tutorial');
+//update
+Route::get('/edit-barang/{id}', [BarangController::class, 'editBarang'])->name('edit-barang');
+Route::put('/edit-barang-simpan/{id}', [BarangController::class, 'editBarangSimpan'])->name('edit-barang-simpan');
 
-Route::get('/tambah-barang', function () {
-    return view('tambah-barang');
-})->name('tambah-barang-form');
+Route::get('/edit-aula/{id}', [AulaController::class, 'editAula'])->name('edit-aula');
+Route::put('/edit-aula-simpan/{id}', [AulaController::class, 'editAulaSimpan'])->name('edit-aula-simpan');
 
-// POST route to handle the form submission and store data
-Route::post('/tambah-barang-submit', [BarangController::class, 'create'])->name('tambah-barang-submit');
+//delete
+Route::delete('/delete-barang/{id}', [BarangController::class, 'hapusBarang'])->name('hapus-barang');
 
-Route::get('/tambah-aula', function () {
-    return view('tambah-aula');
-})->name('tambah-aula-form');
+Route::delete('/delete-aula/{id}', [AulaController::class, 'hapusAula'])->name('hapus-aula');
 
-// POST route to handle the form submission and store data
-Route::post('/tambah-aula', [AulaController::class, 'create'])->name('tambah-aula-submit');
-
-Route::get('/edit_barang/{id_barang}', [BarangController::class, 'edit']);

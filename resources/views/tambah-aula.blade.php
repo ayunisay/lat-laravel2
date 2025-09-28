@@ -31,7 +31,7 @@
             <div class="flex items pt-15 text-xl font-bold text-center">
                 <h1>Form Peminjaman Aula</h1>
             </div>
-            <form action="/tambah-aula" method="POST" class="w-full max-w-lg pt-10">
+            <form action="{{ route('tambah-aula-submit') }}" method="POST" class="w-full max-w-lg pt-10">
                 @csrf
                 <div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full px-3">

@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\barang;
-
+use App\Models\Barang as ModelsBarang;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function barang()
     {
         $barangs = Barang::all();
         return view('barang', ['barang' => $barangs]);
     }
     
-    public function create(Request $request)
+    public function tambahBarang(){
+        return view('tambah-barang');
+    }
+
+    public function tambahBarangSubmit(Request $request)
     {
         $request->validate([
             'nama_barang' => 'required|string|max:255',
@@ -33,13 +37,13 @@ class BarangController extends Controller
         return redirect()->route('barang')->with('success', 'Peminjaman Barang berhasil ditambahkan!');
     }
 
-    public function edit($id)
+    public function editBarang(Barang $barang, $id)
     {
         $barangs = Barang::find($id);
-        return view('edit_barang', ['barang' => $barangs]);
+        return view('edit-barang', ['barang' => $barangs]);
     }
 
-    public function update(Request $request, $id){
+    public function editBarangSimpan(Request $request, $id){
         $request->validate([
             'nama_barang' => 'required|string|sometimes|max:255',
             'nama_peminjam' => 'required|string|sometimes|max:255',
@@ -53,5 +57,11 @@ class BarangController extends Controller
             'tanggal_peminjaman' => $request->tanggal_peminjaman,
             'tanggal_pengembalian' => $request->tanggal_pengembalian,
         ]);
+        return redirect()->route('barang')->with('success','Barang berhasil diedit');
+    }
+
+    public function hapusBarang($id){
+        Barang::find($id)->delete();
+        return redirect()->route('barang')->with('success','Barang berhasil dihapus');
     }
 }   

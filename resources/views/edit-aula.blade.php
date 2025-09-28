@@ -23,37 +23,37 @@
             <div class="flex justify-between pl-10">
                 <ul class="flex">
                     <li class="mr-6">
-                        <a class="text-blue-500 hover:text-blue-800" href="{{ route('barang') }}"><- Kembali</a>
+                        <a class="text-blue-500 hover:text-blue-800" href="{{ route('aula') }}"><- Kembali</a>
                     </li>
                 </ul>
             </div>
         <div class="w-full items-center justify-items-center ">
             <div class="flex items pt-15 text-xl font-bold text-center">
-                <h1>Form Edit Peminjaman Barang</h1>
+                <h1>Form Edit Peminjaman Aula</h1>
             </div>
-            <form action="/update-buku/{{ $barang->id }}" method="post" class="w-full max-w-lg pt-10">
+            <form action="{{ route('edit-aula-simpan', ['id' => $aula->id]) }}" method="post" class="w-full max-w-lg pt-10">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full px-3">
-                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama Barang</label>
-                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->nama_barang }}">
+                        <label for="nama-kegiatan" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama kegiatan</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_kegiatan" value="{{ $aula->nama_kegiatan }}">
                     </div>
                 </div><div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full px-3">
-                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama Peminjam</label>
-                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->nama_peminjam }}">
+                        <label for="nama_peminjam" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Nama Peminjam</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_peminjam" value="{{ $aula->nama_peminjam }}">
                     </div>
                 </div><div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full px-3">
-                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Peminjaman</label>
-                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nama_barang" value="{{ $barang->tanggal_peminjaman }}">
+                        <label for="tanggal_mulai" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Mulai</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="tanggal_mulai" value="{{ $aula->tanggal_mulai }}">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3">
                     <div class="w-full px-3">
-                        <label for="nama-barang" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Pengembalian</label>
-                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="tanggal_pengembalian" value="{{ $barang->tanggal_pengembalian }}">
+                        <label for="tanggal_selesai" class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Tanggal Selesai</label>
+                        <input class="bg-gray-200 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-3 px-4 mb-3 leading-tight dark:bg-white-700 dark:border-gray-700 dark:placeholder-gray-500 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="tanggal_selesai" value="{{ $aula->tanggal_selesai }}">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6 pt-10">
