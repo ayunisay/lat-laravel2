@@ -5,7 +5,13 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TutorialController;
+use App\Http\Controllers\auth\UserController;
 
+Route::get('/login', [UserController::class, 'index'])->name('login');
+Route::post('/login', [UserController::class,'login'])->name('login.submit');
+
+Route::middleware(["auth"])->group(function () {
+    
 //view
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/barang', [BarangController::class, 'barang'])->name('barang');
@@ -31,3 +37,4 @@ Route::delete('/delete-barang/{id}', [BarangController::class, 'hapusBarang'])->
 
 Route::delete('/delete-aula/{id}', [AulaController::class, 'hapusAula'])->name('hapus-aula');
 
+});
