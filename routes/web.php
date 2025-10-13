@@ -7,6 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\auth\UserController;
 
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'registerSubmit'])->name('register.submit');
+
 Route::get('/login', [UserController::class, 'index'])->name('login');
 Route::post('/login', [UserController::class,'login'])->name('login.submit');
 

@@ -12,6 +12,27 @@ class UserController extends Controller
         return view("auth.login");
     }
 
+    public function register() {
+        return view('auth.register');
+    }
+
+    public function registerSubmit(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = \App\Models\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        \Illuminate\Support\Facades\Auth::login($user);
+        return redirect()->route('home');
+    }
+
     public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
